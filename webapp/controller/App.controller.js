@@ -1,6 +1,6 @@
-sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/m/MessageToast'], function (Controller, MessageToast) {
+sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/m/MessageToast', 'sap/ui/core/Fragment'], function (Controller, MessageToast, Fragment) {
   'use strict';
-  return Controller.extend('sap.ui.demo.walkthrough.controller.App', {
+  return Controller.extend('sap.ui.demo.practice.controller.App', {
     onShowHello: function () {
       // read msg from i18n model
       const oBundle = this.getView().getModel('i18n').getResourceBundle();
@@ -10,5 +10,16 @@ sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/m/MessageToast'], function (Co
       // show sap toast
       MessageToast.show(sMsg);
     },
+    onOpenPartyDialog : function () {
+      // create dialog lazily
+      if (!this.pDialog) {
+        this.pDialog = this.loadFragment({
+          name: "sap.ui.demo.practice.view.PartyDialog"
+        });
+      }
+      this.pDialog.then(function(oDialog) {
+        oDialog.open();
+      });
+    }
   });
 });

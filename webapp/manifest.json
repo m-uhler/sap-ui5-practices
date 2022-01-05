@@ -1,7 +1,7 @@
 {
   "_version": "1.12.0",
   "sap.app": {
-    "id": "sap.ui.demo.walkthrough",
+    "id": "sap.ui.demo.practice",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "title": "{{appTitle}}",
@@ -25,7 +25,7 @@
       }
     ],
     "rootView": {
-      "viewName": "sap.ui.demo.walkthrough.view.App",
+      "viewName": "sap.ui.demo.practice.view.App",
       "type": "XML",
       "id": "app"
     },
@@ -42,9 +42,40 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "sap.ui.demo.walkthrough.i18n.i18n",
+          "bundleName": "sap.ui.demo.practice.i18n.i18n",
           "supportedLocales": [""],
           "fallbackLocale": ""
+        }
+      }
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "sap.ui.demo.practice.view",
+        "controlId": "app",
+        "controlAggregation": "pages"
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "overview",
+          "target": "overview"
+        },
+        {
+          "pattern": "detail",
+          "name": "detail",
+          "target": "detail"
+        }
+      ],
+      "targets": {
+        "overview": {
+          "viewId": "overview",
+          "viewName": "Overview"
+        },
+        "detail": {
+          "viewId": "detail",
+          "viewName": "Detail"
         }
       }
     }

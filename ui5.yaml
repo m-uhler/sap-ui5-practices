@@ -1,6 +1,6 @@
 specVersion: '2.6'
 metadata:
-  name: sap-ui5-walkthrough
+  name: sap-ui5-practice
 type: application
 framework:
   name: SAPUI5

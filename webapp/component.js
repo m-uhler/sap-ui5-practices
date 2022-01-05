@@ -1,10 +1,10 @@
 sap.ui.define(['sap/ui/core/UIComponent', 'sap/ui/model/json/JSONModel', 'sap/ui/model/resource/ResourceModel'], function (UIComponent, JSONModel, ResourceModel) {
   'use strict';
-  return UIComponent.extend('sap.ui.demo.walkthrough.Component', {
+  return UIComponent.extend('sap.ui.demo.practice.Component', {
     metadata: {
       interfaces: ['sap.ui.core.IAsyncContentCreation'],
       rootView: {
-        viewName: 'sap.ui.demo.walkthrough.view.App',
+        viewName: 'sap.ui.demo.practice.view.App',
         type: 'XML',
         /*"async": true, // implicitly set via the sap.ui.core.IAsyncContentCreation interface*/
         id: 'app',
@@ -90,9 +90,12 @@ sap.ui.define(['sap/ui/core/UIComponent', 'sap/ui/model/json/JSONModel', 'sap/ui
 
       // set i18n model
       const i18nModel = new ResourceModel({
-        bundleName: 'sap.ui.demo.walkthrough.i18n.i18n',
+        bundleName: 'sap.ui.demo.practice.i18n.i18n',
       });
       this.setModel(i18nModel, 'i18n');
+
+      // create the views based on the url/hash
+      this.getRouter().initialize();
     },
   });
 });

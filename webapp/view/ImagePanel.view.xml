@@ -1,0 +1,21 @@
+<mvc:View
+        controllerName="sap.ui.demo.practice.controller.App"
+        xmlns="sap.m"
+        xmlns:mvc="sap.ui.core.mvc"
+        displayBlock="true"
+>
+<Panel headerText="{i18n>imagePanelTitle}" class="sapUiResponsiveMargin" width="auto">
+    <VBox>
+        <HBox justifyContent="Start">
+            <VBox>
+                <Text text="{i18n>image01}" class="sapUiSmallMarginBottom" />
+                <Image src="../images/01.jpg" width="10rem" class=" sapUiSmallMarginEnd" />
+            </VBox>
+            <VBox>
+                <Text text="{i18n>image02}" class="sapUiSmallMarginBottom" />
+                <Image src="../images/02.jpg" width="10rem" class="sapUiSmallMarginEnd" />
+            </VBox>
+        </HBox>
+    </VBox>
+</Panel>
+</mvc:View>
