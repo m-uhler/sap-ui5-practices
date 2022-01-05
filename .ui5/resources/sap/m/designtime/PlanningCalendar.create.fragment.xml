@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+		<PlanningCalendar>
+			<rows>
+				<PlanningCalendarRow title="Team Member 1" />
+			</rows>
+		</PlanningCalendar>
+</core:FragmentDefinition>

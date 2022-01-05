@@ -1,0 +1,8 @@
+applications:
+  - name: demo
+    path: deployment/
+    buildpacks:
+      - nodejs_buildpack
+    memory: 256M
+    command: yes
+    random-route: true

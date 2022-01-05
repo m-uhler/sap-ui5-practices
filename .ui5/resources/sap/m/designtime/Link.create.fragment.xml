@@ -1,0 +1,3 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+		<Link href="https://ui5.sap.com" text="Link Text" />
+</core:FragmentDefinition>

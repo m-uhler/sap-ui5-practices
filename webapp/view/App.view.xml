@@ -1,0 +1,76 @@
+<mvc:View
+  controllerName="sap.ui.demo.walkthrough.controller.App"
+  xmlns="sap.m"
+  xmlns:f="sap.f"
+  xmlns:mc="sap.suite.ui.microchart"
+  xmlns:table="sap.ui.table"
+  xmlns:mvc="sap.ui.core.mvc"
+  displayBlock="true"
+>
+    <Shell>
+        <App>
+            <pages>
+                <Page title="{i18n>homePageTitle}">
+                    <content>
+                        <Panel headerText="{i18n>helloPanelTitle}" class="sapUiResponsiveMargin" width="auto">
+                            <content>
+                                <Button text="{i18n>showHelloButtonText}" press=".onShowHello" class="sapUiSmallMarginEnd" />
+                                <Input value="{/recipient/name}" valueLiveUpdate="true" width="60%" />
+                                <Text text="Hello {/recipient/name}" class="sapUiSmallMargin" />
+                            </content>
+                        </Panel>
+                        <Panel headerText="{i18n>imagePanelTitle}" class="sapUiResponsiveMargin" width="auto">
+                            <VBox>
+                                <HBox justifyContent="Start">
+                                    <VBox>
+                                        <Text text="{i18n>image01}" class="sapUiSmallMarginBottom" />
+                                        <Image src="../images/01.jpg" width="10rem" class=" sapUiSmallMarginEnd" />
+                                    </VBox>
+                                    <VBox>
+                                        <Text text="{i18n>image02}" class="sapUiSmallMarginBottom" />
+                                        <Image src="../images/02.jpg" width="10rem" class="sapUiSmallMarginEnd" />
+                                    </VBox>
+                                </HBox>
+                            </VBox>
+                        </Panel>
+                        <Panel class="sapUiResponsiveMargin" width="auto">
+                            <f:GridList headerText="{i18n>electionTitle}" items="{path:'data>/election'}">
+                                <f:GridListItem>
+                                    <VBox class="sapUiSmallMargin" justifyContent="SpaceBetween">
+                                        <Title text="{data>name}" wrapping="true" />
+                                        <Label text="{data>info}" wrapping="true" />
+                                        <mc:DeltaMicroChart class="sapUiSmallMarginTop" size="S" title1="2021" title2="2017" value1="{data>value}" value2="{data>oldValue}" color="{data>color}" />
+                                    </VBox>
+                                </f:GridListItem>
+                            </f:GridList>
+                        </Panel>
+                        <Panel headerText="{i18n>coronaStats}" class="sapUiResponsiveMargin" width="auto">
+                            <table:Table selectionMode="None" rows="{corona>/}">
+                                <table:columns>
+                                    <table:Column>
+                                        <Label text="{i18n>date}" />
+                                        <table:template>
+                                            <Label text="{corona>date}" />
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column>
+                                        <Label text="{i18n>positive}" />
+                                        <table:template>
+                                            <Label text="{corona>positive}" />
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column>
+                                        <Label text="{i18n>negative}" />
+                                        <table:template>
+                                            <Label text="{corona>negative}" />
+                                        </table:template>
+                                    </table:Column>
+                                </table:columns>
+                            </table:Table>
+                        </Panel>
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>
