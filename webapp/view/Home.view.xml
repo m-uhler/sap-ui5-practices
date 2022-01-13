@@ -1,15 +1,31 @@
 <mvc:View
         controllerName="sap.ui.demo.practice.controller.Home"
         xmlns="sap.m"
+        xmlns:f="sap.f"
         xmlns:mvc="sap.ui.core.mvc">
     <Page title="{i18n>homePageTitle}" class="sapUiResponsiveContentPadding">
         <content>
-            <!--  -->
-            <Button id="displayNotFoundBtn" text="{i18n>DisplayNotFound}" press=".onDisplayNotFound" class="sapUiTinyMarginEnd"/>
 
-            <!--  -->
-            <Button text="{i18n>routToCorona}" press=".navigateToCorona" class="sapUiTinyMarginEnd"/>
-            <Button text="{i18n>routeToOtherView}" press=".navigateToOtherViews" class="sapUiTinyMarginEnd"/>
+            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{i18n>DisplayNotFound}"
+                         subheader="{i18n>DisplayNotFoundLabel}" press="onDisplayNotFound">
+                <TileContent unit="404" footer="Sample Page">
+                    <ImageContent src="sap-icon://error" />
+                </TileContent>
+            </GenericTile>
+
+            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{i18n>navToCorona}"
+                         subheader="{i18n>navToCoronaLabel}" press="navigateToCorona">
+                <TileContent unit="Corona" footer="REST API">
+                    <ImageContent src="sap-icon://accidental-leave" />
+                </TileContent>
+            </GenericTile>
+
+            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{i18n>navToOtherView}"
+                         subheader="{i18n>navToOtherViewLabel}" press="navigateToOtherViews">
+                <TileContent unit="Views" footer="samples">
+                    <ImageContent src="sap-icon://switch-views" />
+                </TileContent>
+            </GenericTile>
         </content>
     </Page>
 </mvc:View>

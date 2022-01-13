@@ -7,8 +7,6 @@ sap.ui.define([
 
     return BaseController.extend("sap.ui.demo.practice.controller.Home", {
 
-
-
         navigateToCorona:function(){
             this.getRouter().getTargets().display("corona");
         },

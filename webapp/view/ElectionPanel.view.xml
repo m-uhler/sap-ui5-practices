@@ -9,12 +9,11 @@
 <Panel class="sapUiResponsiveMargin" width="auto">
     <f:GridList headerText="{i18n>electionTitle}" items="{path:'data>/election'}">
         <f:GridListItem type="Navigation"
-                        press="onPress">
+                        press="onOpenPartyDialog">
             <VBox class="sapUiSmallMargin" justifyContent="SpaceBetween">
                 <Title text="{data>name}" wrapping="true" />
                 <Label text="{data>info}" wrapping="true" />
                 <mc:DeltaMicroChart class="sapUiSmallMarginTop" size="S" title1="2021" title2="2017" value1="{data>value}" value2="{data>oldValue}" color="{data>color}" />
-                <Button text="{i18n>showPartyDialog} {data>name}" press=".onOpenPartyDialog"                        class="sapUiSmallMarginEnd" />
             </VBox>
         </f:GridListItem>
     </f:GridList>
