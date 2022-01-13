@@ -54,28 +54,46 @@
         "viewType": "XML",
         "viewPath": "sap.ui.demo.practice.view",
         "controlId": "app",
-        "controlAggregation": "pages"
+        "controlAggregation": "pages",
+        "transition": "slide",
+        "bypassed": {
+          "target": "notFound"
+        },
+        "async": true
       },
-      "routes": [
-        {
-          "pattern": "",
-          "name": "overview",
-          "target": "overview"
-        },
-        {
-          "pattern": "detail",
-          "name": "detail",
-          "target": "detail"
-        }
-      ],
+      "routes": [{
+        "pattern": "",
+        "name": "appHome",
+        "target": "home"
+      },{
+        "pattern": "corona",
+        "name": "corona",
+        "target": "corona"
+      },{
+        "pattern": "other",
+        "name": "otherViews",
+        "target": "other"
+      }],
       "targets": {
-        "overview": {
-          "viewId": "overview",
-          "viewName": "Overview"
+        "home": {
+          "viewId": "home",
+          "viewName": "Home",
+          "viewLevel" : 1
         },
-        "detail": {
-          "viewId": "detail",
-          "viewName": "Detail"
+        "notFound": {
+          "viewId": "notFound",
+          "viewName": "NotFound",
+          "transition": "show"
+        },
+        "corona": {
+          "viewId": "corona",
+          "viewName": "Corona",
+          "viewLevel" : 1
+        },
+        "other": {
+          "viewId": "other",
+          "viewName": "Overview",
+          "viewLevel" : 1
         }
       }
     }

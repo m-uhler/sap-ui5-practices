@@ -1,6 +1,12 @@
-sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/m/MessageToast', 'sap/ui/core/Fragment'], function (Controller, MessageToast, Fragment) {
+sap.ui.define([
+    'sap/ui/demo/practice/controller/BaseController',
+    'sap/m/MessageToast',
+    'sap/ui/core/Fragment'
+], function (BaseController, MessageToast) {
   'use strict';
-  return Controller.extend('sap.ui.demo.practice.controller.App', {
+  return BaseController.extend('sap.ui.demo.practice.controller.App', {
+    onInit: function () {
+    },
     onShowHello: function () {
       // read msg from i18n model
       const oBundle = this.getView().getModel('i18n').getResourceBundle();
