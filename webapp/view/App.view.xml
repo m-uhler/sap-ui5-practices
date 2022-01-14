@@ -4,7 +4,7 @@
   xmlns:mvc="sap.ui.core.mvc"
   displayBlock="true"
 >
-    <Shell>
-        <App class="myAppDemoWT" id="app" />
+    <Shell class="customBackground">
+        <App id="app" />
     </Shell>
 </mvc:View>

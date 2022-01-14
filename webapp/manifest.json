@@ -19,11 +19,13 @@
     }
   },
   "sap.ui5": {
-    "css": [
-      {
-        "uri": "css/style.scss"
-      }
-    ],
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
     "rootView": {
       "viewName": "sap.ui.demo.practice.view.App",
       "type": "XML",

@@ -13,19 +13,25 @@
                     <table:Column>
                         <Label text="{i18n>date}" />
                         <table:template>
-                            <Label text="{corona>date}" />
+                            <Label text="{path:'corona>dateChecked',formatter:'.formatter.date'}" />
                         </table:template>
                     </table:Column>
                     <table:Column>
                         <Label text="{i18n>positive}" />
                         <table:template>
-                            <Label text="{corona>positive}" />
+                            <Label text="{path:'corona>positive',formatter:'.formatter.number'}" />
                         </table:template>
                     </table:Column>
                     <table:Column>
                         <Label text="{i18n>negative}" />
                         <table:template>
-                            <Label text="{corona>negative}" />
+                            <Label text="{path:'corona>negative',formatter:'.formatter.number'}" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column>
+                        <Label text="{i18n>death}" />
+                        <table:template>
+                            <Label text="{path:'corona>',formatter:'.formatter.death'}" />
                         </table:template>
                     </table:Column>
                 </table:columns>
