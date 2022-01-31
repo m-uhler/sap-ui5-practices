@@ -1,0 +1,147 @@
+<mvc:View
+		controllerName="sap.ui.demo.practice.controller.Corona"
+		xmlns="sap.m"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:core="sap.ui.core"
+		displayBlock="true"
+>
+	<Page title="{i18n>coronaStats}" showNavButton="true" navButtonPress="onNavBack">
+
+
+<!--<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">-->
+	<FlexBox justifyContent="SpaceBetween" class="vtio-max-width-50rem-largerThanTablet vtio-margin-auto">
+		<FlexBox wrap="Wrap" class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+			<!--xxx and title-->
+			<FlexBox width="100%" class="vtio-borderunderTitle sapUiSmallMarginTop">
+				<VBox class="sapUiSmallMarginBottom" width="100%">
+					<MessageStrip visible="{= ${AppStateModel>/selectedContentLanguageKey} !== ${NewsDetailModel>/infoObjects/0/language/languageKey}}" text="{i18n>NcDetailPageLangWarning}" type="Info" showIcon="true" showCloseButton="true" class="sapUiMediumMarginBottom"></MessageStrip>
+					<FlexBox width="100%">
+						<items>
+							<FlexBox wrap="Wrap" alignItems="Center">
+								<ObjectStatus text="{NewsDetailModel>/channel/channelTranslations/0/name}" state="Indication05" />
+								<Tokenizer width="auto">
+									<tokens>
+										<Token text="Top" editable="false" selected="true" visible="{NewsDetailModel>/topInfoObject}" class="vtio-topNewsToken sapMToken sapMTokenSelected sapMTokenReadOnly sapUiTinyMarginBegin sapUiTinyMarginEnd" />
+									</tokens>
+								</Tokenizer>
+							</FlexBox>
+						</items>
+					</FlexBox>
+					<!--TODO: Abstand ggfs. über css Klassen? http://www.sapui5tutors.com/2016/08/margins-and-padding-in-sapui5.html / https://ui5.sap.com/1.38.41/#docs/guide/17b87fbafb5a4474982760d2a3a73e69.html  -->
+					<Title text="{NewsDetailModel>/infoObjects/0/stringFieldsAsObject/title}" titleStyle="H1" wrapping="true" wrappingType="Hyphenated" class="sapUiSmallMarginTop" />
+				</VBox>
+			</FlexBox>
+			<!--xxx-->
+			<FlexBox width="100%" justifyContent="SpaceBetween" class="vtio-borderunderTitle">
+				<items>
+					<FlexBox wrap="Wrap" alignItems="Center" class="sapUiTinyMarginTopBottom sapUiTinyMarginStart">
+						<ObjectStatus title="{i18n>NcDetailPageFrom}" visible="{= ${AppStateModel>/device/isPhone} === false}" />
+						<!--<Avatar initials="{= ${NewsDetailModel>/author/displayName}[0] + ${NewsDetailModel>/author/lastName}[0]}" displaySize="XS" class="sapUiTinyMarginEnd" />-->
+						<ObjectStatus text="{NewsDetailModel>/author/displayName}" class="sapUiSmallMarginEnd" />
+						<ObjectStatus title="{i18n>NcDetailPageLastUpdateOn}" visible="{= ${AppStateModel>/device/isPhone} === false}" />
+						<ObjectStatus text="{path: 'NewsDetailModel>/visibleFrom', formatter: '.formatter.transformTimestampToDate'}" state="None" />
+					</FlexBox>
+				</items>
+			</FlexBox>
+			<!--icons-->
+			<FlexBox width="100%" alignItems="Start" justifyContent="End" class="sapUiTinyMarginBottom">
+				<items>
+					<FlexBox wrap="Wrap" alignItems="End" class="sapUiTinyMarginTop">
+						<Button visible="{:= !${AppStateModel>/isEditorCockpit}}" icon="{= (${BookmarksModel>/entityIds}.indexOf(${NewsDetailModel>/infoObjectContainerId}.toString()) >= 0)?'sap-icon://favorite':'sap-icon://add-favorite'}" type="Transparent" tooltip="{parts: [{path: 'i18n>NcDetailPageAddBookmarkButtonText'},{path: 'i18n>NcDetailPageRemoveBookmarkButtonText'},{path: 'NewsDetailModel>/infoObjectContainerId'},{path: 'BookmarksModel>/entityIds'}], formatter: '.bookmarkButtonTooltip'}" press=".bookmarkButtonPressed"/>
+						<Button icon="sap-icon://share-2" type="Transparent" tooltip="{i18n>NcDetailPageShareButtonText}" press="onShareNewsListItemPress" class="sapUiTinyMarginEnd" />
+					</FlexBox>
+				</items>
+			</FlexBox>
+			<!--content area1-->
+			<FlexBox renderType="Bare" wrap="Wrap" width="100%">
+				<VBox>
+					<FormattedText htmlText="{NewsDetailModel>/infoObjects/0/stringFieldsAsObject/abstract}" class="vtio-htmlText sapUiMediumMarginBottom"  visible= "{:= !${model: 'NewsDetailModel', path: '/infoObjects/0/stringFieldsAsObject/abstract', formatter: '.formatter.isEmptyValue'}}"/>
+					<Image src="{parts: [{path: 'NewsDetailModel>/infoObjects/0/widescreenImage'},{value: '%20thumbnail=large'}], formatter: '.formatter.getImagePath'}" width="100%" height="auto" class="vtio-max-width-20rem" />
+				</VBox>
+			</FlexBox>
+			<!-- table-->
+			<FlexBox renderType="Bare" wrap="Wrap" width="100%">
+			<!--TODO color="#0854a0"-->
+				<FlexBox wrap="Wrap" renderType="Bare" direction="Column" alignItems="Start" class="sapUiMediumMarginTop">
+					<!--<Title text="{i18n>News.event.general}" titleStyle="H3" class="sapUiTinyMarginBottom"/>-->
+					<HBox class="sapUiTinyMarginTop" visible= "{:= !${model: 'NewsDetailModel', path: '/dateTimeFieldsAsObject/event_datetime_start', formatter: '.formatter.isEmptyValue'}}">
+						<core:Icon width="1rem" src="sap-icon://history" class="sapUiTinyMarginEnd" />
+						<Text class="sapUiHideOnPhone" width="10rem" text="{i18n>News.event.period}:" />
+						<!--<Text class="sapUiVisibleOnlyOnPhone" width="6rem" text="{i18n>News.event.period}:" />-->
+						<Text wrapping="true" class="sapUiTinyMarginBeginEnd" text="{parts: [{path: 'NewsDetailModel>/dateTimeFieldsAsObject/event_datetime_start'},{path: 'NewsDetailModel>/dateTimeFieldsAsObject/event_datetime_end'}], formatter: '.formatter.transformTimePeriod'}" />
+					</HBox>
+					<HBox class="sapUiTinyMarginTop" visible= "{:= !${model: 'NewsDetailModel', path: '/infoObjects/0/stringFieldsAsObject/event_location', formatter: '.formatter.isEmptyValue'}}">
+						<core:Icon width="1rem" src="sap-icon://locate-me" class="sapUiTinyMarginEnd" />
+						<Text class="sapUiHideOnPhone" width="10rem" text="{i18n>News.event.location}:" />
+						<!--<Text class="sapUiVisibleOnlyOnPhone" width="6rem" text="{i18n>News.event.location}:" />-->
+						<Text wrapping="true" class="sapUiTinyMarginBeginEnd" text="{NewsDetailModel>/infoObjects/0/stringFieldsAsObject/event_location}" />
+					</HBox>
+					<HBox class="sapUiTinyMarginTop" visible= "{:= !${model: 'NewsDetailModel', path: '/infoObjects/0/stringFieldsAsObject/language', formatter: '.formatter.isEmptyValue'}}">
+						<core:Icon width="1rem" src="sap-icon://globe" class="sapUiTinyMarginEnd" />
+						<Text class="sapUiHideOnPhone" width="10rem" text="{i18n>News.event.language}:" />
+						<!--<Text class="sapUiVisibleOnlyOnPhone" width="6rem" text="{i18n>News.event.language}:" />-->
+						<Text class="sapUiHideOnPhone sapUiTinyMarginBeginEnd" wrapping="true" text="{NewsDetailModel>/infoObjects/0/stringFieldsAsObject/language}" />
+						<Text class="sapUiVisibleOnlyOnPhone sapUiTinyMarginBeginEnd" core:require="{formatMessage:'sap/base/strings/formatMessage'}" text="{parts:['i18n>News.event.language.mobile' , 'NewsDetailModel>/infoObjects/0/stringFieldsAsObject/language'],formatter:'formatMessage'}" />
+					</HBox>
+					<HBox class="sapUiTinyMarginTop" visible= "{:= !${model: 'NewsDetailModel', path: '/infoObjects/0/stringFieldsAsObject/target_audience', formatter: '.formatter.isEmptyValue'}}">
+					    <core:Icon width="1rem" src="sap-icon://target-group" class="sapUiTinyMarginEnd" />
+						<Text class="sapUiHideOnPhone" width="10rem" text="{i18n>News.event.targetAudience}:" />
+						<!--<Text class="sapUiVisibleOnlyOnPhone" width="6rem" text="{i18n>News.event.targetAudience}:" />-->
+						<Text class="sapUiHideOnPhone sapUiTinyMarginBeginEnd" wrapping="true" text="{NewsDetailModel>/infoObjects/0/stringFieldsAsObject/target_audience}" />
+						<Text class="sapUiVisibleOnlyOnPhone sapUiTinyMarginBeginEnd" core:require="{formatMessage:'sap/base/strings/formatMessage'}" text="{parts:['i18n>News.event.targetAudience.mobile' , 'NewsDetailModel>/infoObjects/0/stringFieldsAsObject/target_audience'],formatter:'formatMessage'}" />
+					</HBox>
+					<HBox width="100%" class="sapUiTinyMarginTop" visible= "{:= !${model: 'NewsDetailModel', path: '/integerFieldsAsObject/participants_count', formatter: '.formatter.isEmptyValue'}}">
+						<core:Icon width="1rem" src="sap-icon://company-view" class="sapUiTinyMarginEnd"/>
+						<Text class="sapUiHideOnPhone" width="10rem" text="{i18n>News.event.maxParticipants}:" />
+						<Text class="sapUiHideOnPhone sapUiTinyMarginBeginEnd" wrapping="true" text="{NewsDetailModel>/integerFieldsAsObject/participants_count}" />
+						<!--<Text class="sapUiVisibleOnlyOnPhone" width="6rem" text="{i18n>News.event.maxParticipants}:" />-->
+						<Text class="sapUiVisibleOnlyOnPhone sapUiTinyMarginBeginEnd" core:require="{formatMessage:'sap/base/strings/formatMessage'}" text="{parts:['i18n>News.event.maxParticipants.mobile' , 'NewsDetailModel>/integerFieldsAsObject/participants_count'],formatter:'formatMessage'}" />
+					</HBox>
+					<HBox width="100%" class="sapUiTinyMarginTop" visible= "{:= !${model: 'NewsDetailModel', path: '/dateTimeFieldsAsObject/registration_deadline', formatter: '.formatter.isEmptyValue'}}">
+					    <core:Icon width="1rem" src="sap-icon://lateness" class="sapUiTinyMarginEnd" />
+						<Text class="sapUiHideOnPhone" width="10rem" text="{i18n>News.event.registrationDeadline}:" />
+						<Text class="sapUiHideOnPhone sapUiTinyMarginBeginEnd"  wrapping="true" text="{path: 'NewsDetailModel>/dateTimeFieldsAsObject/registration_deadline', formatter: '.formatter.transformTimestampToDate'}" />
+						<!--<Text class="sapUiVisibleOnlyOnPhone" width="6rem" text="{i18n>News.event.registrationDeadline}:" />-->
+						<Text class="sapUiVisibleOnlyOnPhone sapUiTinyMarginBeginEnd" text="{i18n>News.event.registrationDeadline.mobile.preText} {path: 'NewsDetailModel>/dateTimeFieldsAsObject/registration_deadline', formatter: '.formatter.transformTimestampToDate'} {i18n>News.event.registrationDeadline.mobile.postText}" />
+						</HBox>
+					<HBox width="100%" class="sapUiTinyMarginTop" visible= "{:= !${model: 'NewsDetailModel', path: '/infoObjects/0/stringFieldsAsObject/registration_requirements', formatter: '.formatter.isEmptyValue'}}">
+						<core:Icon width="1rem" src="sap-icon://activity-2" class="sapUiTinyMarginEnd" />
+						<Text class="sapUiHideOnPhone" width="10rem" text="{i18n>News.event.requirement}:" />
+						<Text class="sapUiHideOnPhone sapUiTinyMarginBeginEnd" wrapping="true"  text="{NewsDetailModel>/infoObjects/0/stringFieldsAsObject/registration_requirements}" />
+						<!--<Text class="sapUiVisibleOnlyOnPhone" width="6rem" text="{i18n>News.event.requirement}:" />-->
+						<Text class="sapUiVisibleOnlyOnPhone sapUiTinyMarginBeginEnd" text="{i18n>News.event.requirement}: {NewsDetailModel>/infoObjects/0/stringFieldsAsObject/registration_requirements}" />
+					</HBox>
+				</FlexBox>
+
+				<FlexBox width="100%">
+					<HBox class="sapUiMediumMarginTop">
+						<Button
+							class="sapUiSmallMarginEnd"
+							icon="sap-icon://inspect"
+							text="{:= ${model: 'NewsDetailModel', path: '/infoObjects/0/stringFieldsAsObject/link_label', formatter: '.formatter.isEmptyValue'}?${i18n>News.event.button.linkText}:${NewsDetailModel>/infoObjects/0/stringFieldsAsObject/link_label}}"
+							visible= "{:= !${model: 'NewsDetailModel', path: '/stringFieldsAsObject/link', formatter: '.formatter.isEmptyValue'}}"
+							press=".onRedirectButtonPressed(${NewsDetailModel>/stringFieldsAsObject/link},'_blank')"/>
+						<Button
+							icon="sap-icon://download"
+							text="{i18n>News.event.button.addToCalender}"
+							press=".onICSButtonPressed"/>
+					</HBox>
+				</FlexBox>
+
+			</FlexBox>
+
+			<!--content-->
+			<FlexBox wrap="Wrap" renderType="Bare" direction="Column" alignItems="Start" class="sapUiSmallMarginTop">
+				<!--<Title text="{i18n>News.event.content}" titleStyle="H3"/>-->
+			    <FormattedText htmlText="{NewsDetailModel>/infoObjects/0/stringFieldsAsObject/content}" class="vtio-htmlText" visible= "{:= !${model: 'NewsDetailModel', path: '/infoObjects/0/stringFieldsAsObject/content', formatter: '.formatter.isEmptyValue'}}" />
+			</FlexBox>
+
+			<!--comments-->
+<!--			<FlexBox width="100%">-->
+<!--					<core:Fragment fragmentName="com.vantaio.cp.neo.ui5.enm.view.parts.CommentSection" type="XML"/>-->
+<!--			</FlexBox>-->
+		</FlexBox>
+	</FlexBox>
+<!--</core:FragmentDefinition>-->
+	</Page>
+</mvc:View>

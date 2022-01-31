@@ -12,13 +12,13 @@ sap.ui.define([], function () {
                 return '-'
             }
         },
-        // https://stackoverflow.com/questions/5731193/how-to-format-numbers
         number: function (numberValue){
-            return (numberValue).toLocaleString(
-                undefined, // leave undefined to use the visitor's browser
-                // locale or a string like 'en-US' to override it.
-                { minimumFractionDigits: 0 }
-            );
+            if(numberValue){
+                return (numberValue).toLocaleString();
+            } else{
+                return 0;
+            }
+
         }
     };
 });

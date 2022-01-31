@@ -26,6 +26,23 @@
                     <ImageContent src="sap-icon://switch-views" />
                 </TileContent>
             </GenericTile>
+
+<!--            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{i18n>navToJobPage}"-->
+<!--                         subheader="{i18n>navToJobPageLabel}" press="onPressOpenJobFragment">-->
+<!--                <TileContent unit="Fragment" footer="job">-->
+<!--                    <ImageContent src="sap-icon://account" />-->
+<!--                </TileContent>-->
+<!--            </GenericTile>-->
+
+            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                         header="{i18n>navToCustomControls}"
+                         subheader="{i18n>navToCustomControlsLabel}" press="onPressOpenCustomControls">
+                <TileContent unit="Custom" footer="controls">
+                    <ImageContent src="sap-icon://settings" />
+                </TileContent>
+            </GenericTile>
+
+
         </content>
     </Page>
 </mvc:View>

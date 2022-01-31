@@ -20,8 +20,19 @@ sap.ui.define([
             this.getRouter().getTargets().display("notFound", {
                 fromTarget : "home"
             });
-        }
+        },
 
+        onPressOpenJobFragment: function(){
+            this.getRouter().getTargets().display("job", {
+                fromTarget : "job"
+            });
+        },
+
+        onPressOpenCustomControls:function(){
+            this.getRouter().getTargets().display("customControls", {
+                fromTarget : "customControls"
+            });
+        }
     });
 
 });

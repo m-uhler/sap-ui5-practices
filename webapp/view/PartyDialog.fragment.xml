@@ -2,7 +2,7 @@
         xmlns="sap.m"
         xmlns:core="sap.ui.core" >
     <Dialog
-            id="partyDialog"
-    title="{data>/name}">
+        id="partyDialog"
+        title="{data>/name}">
     </Dialog>
 </core:FragmentDefinition>

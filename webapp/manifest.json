@@ -75,6 +75,14 @@
         "pattern": "other",
         "name": "otherViews",
         "target": "other"
+      },{
+        "pattern": "job",
+        "name": "job",
+        "target": "job"
+      },{
+        "pattern": "customControls",
+        "name": "customControls",
+        "target": "customControls"
       }],
       "targets": {
         "home": {
@@ -95,6 +103,16 @@
         "other": {
           "viewId": "other",
           "viewName": "Overview",
+          "viewLevel" : 1
+        },
+        "job": {
+          "viewId": "job",
+          "viewName": "DetailPage_job",
+          "viewLevel" : 1
+        },
+        "customControls": {
+          "viewId": "customControls",
+          "viewName": "CustomControls",
           "viewLevel" : 1
         }
       }
